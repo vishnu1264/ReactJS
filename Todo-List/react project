@@ -1,0 +1,61 @@
+install a react project
+create a todo list with functional component
+there will be three component 
+(IndexComponent -> it will be table view and the data will be coming from localStorage)
+
+(CreateComponent -> It will be a form with name and description field and a submit button, 
+    on submit button it will save the data in localStorage in an array named todoItems)
+
+<!-- (UpdateComponent -> From table row you can pick the id of the row and pass it to props 
+inside update component and based on the id you can filter the array for that specific record. 
+Same form field will be there but with the object value and on submit it will update the record) -->
+
+Object structure will be as below
+todoItems = [
+  {
+    id: 1,
+    name: "First",
+    description: "My First todo records"
+  },
+]
+1
+useEffect(() => {
+  const todoItems = localStoraget.getItem('todoItems');
+  todoItem = todoItems.find(item => item.id === props.id);
+}, [])
+const updateAction = (id) => {
+  <updateComponent id={id}>
+}
+todoItems.map((item) => {
+  (
+    <tr>
+      <td>{item.id}</td>
+      <td>{item.name}</td>
+      <td>{item.description}</td>
+      <td>
+        <button onClick={updateAction(item.id)} >Update</button>
+      </td>
+    </tr>
+  )
+})
+onClick = {updateAction()}
+
+
+const todoItems = [
+    {
+      name: "First",
+      description: "My First todo records"
+    },
+    {
+      name: "Second",
+      description: "My second todo records"
+    },
+    {
+      name: "Third",
+      description: "My third todo records"
+    },
+    {
+      name: "Fourth",
+      description: "My fourth todo records"
+    },
+  ]

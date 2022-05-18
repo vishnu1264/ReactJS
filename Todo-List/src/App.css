@@ -1,0 +1,44 @@
+.form{
+  margin: 50px 0px 50px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.name-input{
+  margin:0px 0px 20px 10px;
+}
+.desc-input{
+  margin-left: 10px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid black;
+  outline: none;
+}
+
+button{
+  padding: 10px;
+}
+.save-button{
+  border:1px solid black;
+  width: 100px;
+  margin: 20px 0px 0px 20px;
+  padding: 10px;
+  color: white;
+  font-size: large;
+  background-color: rgb(24, 27, 211);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+.list-table{
+  margin: auto;
+}
