@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Wild from "./Wild";
 // import Wild from './components/animal.component';
 import './App.css';
 
@@ -24,31 +25,14 @@ function App() {
   },[animal])
 
   //useEffect Runs After Props Value Change
-  function Wild(props){
 
-    useEffect(()=>{
-      console.log('I run after every props value change');
-    },[props.name, props.type])
-
-    return(
-      <div>
-        <button 
-          onClick={ () => {
-            if(props.type === 'carnivorous')
-              setType('herbivorous')
-            else
-              setType('carnivorous')
-          }}
-        > {props.type} </button>
-        <h3>{props.type}</h3>
-      </div>
-    )
-  }
 
   // // useEffect Runs After Props and State Value Change
   // useEffect(()=>{
   //   console.log('I run after props and state value change');
   // },[])
+  //See this in Wild.
+  
 
   // // useEffect Cleanup
   // useEffect(()=>{
@@ -64,10 +48,7 @@ function App() {
         <button onClick={()=>{setAnimal('Tiger')}}>Tiger</button>
         <button onClick={()=>{setAnimal('Fox')}}>Fox</button>
       </div>
-      <Wild style={{width:200}} name={animal} type={type}/>
-      {/* <Bird type={bird} /> */}
-      {/* <Wild name={bird} onClick={()=>{setBird('parrot')}} >Parrot</Wild>
-      <Wild name={bird} onClick={()=>{setBird('sparrow')}} >Sparrow</Wild> */}
+      <Wild style={{width:200}} name={animal} type={type} setType={setType}/>
       <h1>{animal}</h1>
     </>
   );
