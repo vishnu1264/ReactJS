@@ -34,7 +34,7 @@ function App() {
       <div>
         <button 
           onClick={ () => {
-            if(props.type==='carnivorous')
+            if(props.type === 'carnivorous')
               setType('herbivorous')
             else
               setType('carnivorous')

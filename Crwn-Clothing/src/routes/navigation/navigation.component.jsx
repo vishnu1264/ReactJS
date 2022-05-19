@@ -20,7 +20,7 @@ const Navigation = () => {
           </div>
         </div>
         <Outlet />
-      </Fragment> 
+      </Fragment>
     )
   }
 
