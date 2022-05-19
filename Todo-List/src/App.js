@@ -1,6 +1,6 @@
 // import React from 'react'
 import './App.css'
-import {useState, useEffect, Fragment} from 'react'
+import {useState, useEffect} from 'react'
 import Index from './components/index/index.component'
 // import Item from './components/create/create.component'
 
@@ -9,9 +9,10 @@ const App = () => {
   const [inpName, setInpName] = useState('');
   const [inpDesc, setInpDesc] = useState('');
   const [todoList, setTodoList] = useState([]);
-  var [temp, setTemp] = useState('1');
+  var [temp, setTemp] = useState(1);
 
   //localStorage.setItem('ToDo-List', JSON.stringify(todoList));
+  // console.log('render');
 
   useEffect(() => {
     const existingList = JSON.parse(localStorage.getItem('ToDo-List'));
@@ -21,15 +22,15 @@ const App = () => {
   const addItems = (inpName, inpDesc) => {
     if(inpName === '' || inpDesc === '')
       return;
-    
+    // console.log('render 2');
     const newList = [...todoList, {id: temp, name: inpName, description: inpDesc}];
     setTodoList(newList);
 
     localStorage.setItem('ToDo-List', JSON.stringify(newList));
-    temp++;
-    setTemp(temp);
+    // temp++;
+    setTemp(temp+1);
   }
-  
+  // console.log('render 3');
   return (
     <div>
 
