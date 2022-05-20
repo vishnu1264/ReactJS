@@ -6,7 +6,7 @@ function Wild({setType, name, type}){
 
     // useEffect Runs After Props and State Value Change
     React.useEffect(()=>{
-      console.log('I run after every props value change');
+      console.log('I run after every state and props value change');
     },[name, type, val])
 
     return(

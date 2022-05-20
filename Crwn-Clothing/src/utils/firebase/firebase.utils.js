@@ -20,6 +20,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
 
+//everytime somebody interacts with our provider, we always force them to select an account
 provider.setCustomParameters({
     prompt: "select_account"
 });
