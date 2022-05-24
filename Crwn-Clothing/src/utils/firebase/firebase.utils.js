@@ -2,7 +2,8 @@
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import { getAuth, signInWithRedirect, signInWithPopup, 
+    GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth'
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
 // Your web app's Firebase configuration
@@ -18,23 +19,37 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
 //everytime somebody interacts with our provider, we always force them to select an account
-provider.setCustomParameters({
+googleProvider.setCustomParameters({
     prompt: "select_account"
 });
 
+//auth keeps track of authentications that are happening
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
-export const db = getFirestore();
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+// export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
+
+export const db = getFirestore(); //points to firestore database
+
+export const createUserDocumentFromAuth = 
+    async (userAuth, additionalInformation = {displayName:'vishnu'}) => {
+    if(!userAuth) return;
+
+    // doc reference inside db under users collection with this userAuth's uid (unique)
     const userDocRef = doc(db, 'users', userAuth.uid);
+
+    // returns an object that represents some doc reference in the db
     // console.log(userDocRef);
+
+    // points to doc, allows to check if instance of that exists in db, allows to access the data.
     const userSnapshot = await getDoc(userDocRef);
     // console.log(userSnapshot);
+
+    // tells if inside db, does the data related to reference exists
     // console.log(userSnapshot.exists());
 
     if(!userSnapshot.exists()){
@@ -45,7 +60,8 @@ export const createUserDocumentFromAuth = async (userAuth) => {
             await setDoc(userDocRef, {
                 displayName,
                 email,
-                createdAt
+                createdAt,
+                ...additionalInformation
             })
         }
         catch(error){
@@ -53,4 +69,10 @@ export const createUserDocumentFromAuth = async (userAuth) => {
         }
     }
     return userDocRef;
+}
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    if(!email || !password)
+        return;
+    return await createUserWithEmailAndPassword(auth, email, password);
 }
