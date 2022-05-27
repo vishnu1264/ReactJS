@@ -1,0 +1,15 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.toggle-screen{
+  width: 500px;
+  height: 500px;
+}
+button{
+  cursor: pointer;
+  font-size: large;
+  padding: 10px;
+}
